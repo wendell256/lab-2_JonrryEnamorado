@@ -13,29 +13,8 @@ import java.util.ArrayList;
  */
 public class Examenes {
 
-    private String materia;
-    private String preguntas;
-    private String respuesta;
-
-    
-
-    public ArrayList Examenes(String ver, int x) {
-        ArrayList lista = new ArrayList();
-        if(x ==0){
-        lista.add(ver);
-            
-        }
-        else{
-        lista.add(ver);
-        }
-        return lista;
-    }
-
-    public void printTest(ArrayList x) {
-        
-        for (Object t : x) {
-            System.out.println(x.indexOf(t) + " " + t);
-
-        }
-    }
+    static ArrayList Materias = new ArrayList();
+    static ArrayList PreguntasJuntas = new ArrayList();
+    static ArrayList Preguntas1 = new ArrayList();
+   
 }
