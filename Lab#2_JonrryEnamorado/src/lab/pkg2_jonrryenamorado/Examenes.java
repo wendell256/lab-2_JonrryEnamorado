@@ -16,5 +16,8 @@ public class Examenes {
     static ArrayList Materias = new ArrayList();
     static ArrayList PreguntasJuntas = new ArrayList();
     static ArrayList Preguntas1 = new ArrayList();
+    static ArrayList Answers1 = new ArrayList();
+    static ArrayList AnswersJuntas = new ArrayList();
+    
    
 }

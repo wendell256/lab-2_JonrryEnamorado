@@ -50,9 +50,8 @@ public class Lab2_JonrryEnamorado {
 
                 default:
                     System.out.println("OPCION NO VALIDA");
-
             }
-            System.out.println("Desea Realizar Otra Operacion?s/n");
+            System.out.println("Desea Realizar Otra Operacion Menu Principal?s/n");
             resp = read.next().charAt(0);
         }
         System.out.println(reg.Alumnos);
@@ -149,39 +148,104 @@ public class Lab2_JonrryEnamorado {
             }
             ArrayList dat = new ArrayList();
             dat = (ArrayList) reg.DatosJuntos.get(pos);
-            for (int i = 0; i < dat.size(); i++) {
-                switch (i) {
-                    case 0:
-                        System.out.println("Nombre: " + dat.get(i));
-                        break;
+            System.out.println("***************************");
+            char resp3 = 's';
+            while (resp3 == 'S' || resp3 == 's') {
+                System.out.println("BIENVENIDO");
+                System.out.println("1)Ver Datos");
+                System.out.println("2)Modificar Datos");
+                System.out.println("3)Realizar Evaluaciones");
+                System.out.println("4)Ver Notas");
+                System.out.println("Ingrese una opcion:");
+                read = new Scanner(System.in);
+                int opc = read.nextInt();
+                switch (opc) {
                     case 1:
-                        System.out.println("Numero de Cuenta: " + dat.get(i));
+                        for (int i = 0; i < dat.size(); i++) {
+                            switch (i) {
+                                case 0:
+                                    System.out.println("Nombre: " + dat.get(i));
+                                    break;
+                                case 1:
+                                    System.out.println("Numero de Cuenta: " + dat.get(i));
+                                    break;
+                                case 2:
+                                    System.out.println("Fecha de Nacimiento: " + dat.get(i));
+                                    break;
+                                case 3:
+                                    System.out.println("Edad: " + dat.get(i));
+                                    break;
+                                case 4:
+                                    System.out.println("Ciudad de Residencia: " + dat.get(i));
+                                    break;
+                                case 5:
+                                    System.out.println("Nacionalidad: " + dat.get(i));
+                                    break;
+                                case 6:
+                                    System.out.println("ID: " + dat.get(i));
+                                    break;
+                                case 7:
+                                    System.out.println("User: " + dat.get(i));
+                                    break;
+                                case 8:
+                                    System.out.println("Password: " + dat.get(i));
+                                    break;
+                                case 9:
+                                    System.out.println("Notas: " + dat.get(i));
+                                    break;
+                            }
+                        }
                         break;
                     case 2:
-                        System.out.println("Fecha de Nacimiento: " + dat.get(i));
+                        System.out.println("Que Desea Cambiar?");
+                        System.out.println("1)Nombre");
+                        System.out.println("2)Numero de Cuenta");
+                        System.out.println("3)Fecha de Nacimiento");
+                        System.out.println("4)Edad");
+                        System.out.println("5)Ciudad de Residencia");
+                        System.out.println("6)Nacionalidad");
+                        System.out.println("7)ID");
+                        System.out.println("8)User");
+                        System.out.println("9)Password");
+                        read = new Scanner(System.in);
+                        opc = read.nextInt();
+                        opc--;
+                        System.out.println("Valor Antiguo:");
+                        System.out.println(dat.get(opc));
+                        System.out.println("Nuevo Valor");
+                        read = new Scanner(System.in);
+                        dat.set(opc, read.nextLine());
+                        
                         break;
                     case 3:
-                        System.out.println("Edad: " + dat.get(i));
-                        break;
-                    case 4:
-                        System.out.println("Ciudad de Residencia: " + dat.get(i));
-                        break;
-                    case 5:
-                        System.out.println("Nacionalidad: " + dat.get(i));
-                        break;
-                    case 6:
-                        System.out.println("ID: " + dat.get(i));
-                        break;
-                    case 7:
-                        System.out.println("User: " + dat.get(i));
-                        break;
-                    case 8:
-                        System.out.println("Password: " + dat.get(i));
-                        break;
-                    case 9:
-                        System.out.println("Notas: " + dat.get(i));
-                        break;
+                        if(ex.Materias.size()==0){
+                            System.out.println("ERROR NO HAY EXAMENES A REALIZAR");
+                        }else{
+                        System.out.println("EVALUACION");
+                        System.out.println("Seleccione una materia: ");
+                        for(int i=0; i < ex.Materias.size();i++){
+                            System.out.println((1+i)+ ")" + ex.Materias.get(i));
+                        }
+                        read = new Scanner(System.in);
+                        opc = read.nextInt();
+                        ArrayList preg = new ArrayList();
+                        preg = (ArrayList)ex.PreguntasJuntas.get(opc-1);
+                        for(int i = 0; i < preg.size(); i++){
+                            ex.Answers1 = new ArrayList();
+                            System.out.println(preg.get(i));
+                            System.out.println("RESPUESTA:");
+                            read = new Scanner(System.in);
+                            String answer = read.nextLine();
+                            ex.Answers1.add(answer);        
+                        }
+                        ex.AnswersJuntas.ensureCapacity(opc);
+                        ex.AnswersJuntas.set(opc-1, ex.Answers1);
+                            System.out.println("EXAMEN SUBIDO CON EXITO");
+                        }
                 }
+                
+                System.out.println("Desea Realizar Otra Operacion Estudiante?s/n");
+                resp3 = read.next().charAt(0);
             }
         }
     }
