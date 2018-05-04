@@ -21,6 +21,8 @@ public class Lab2_JonrryEnamorado {
     static Scanner read = new Scanner(System.in);
     static Registro_Login reg = new Registro_Login();
     static Examenes ex = new Examenes();
+    static boolean log = false;
+    static int pos = 0;
 
     public static void main(String[] args) {
         // TODO code application logic here
@@ -40,9 +42,17 @@ public class Lab2_JonrryEnamorado {
 
                 case 2:
                     Crear();
+                    break;
+
+                case 3:
+                    Login();
+                    break;
+
+                default:
+                    System.out.println("OPCION NO VALIDA");
 
             }
-            System.out.println("Desea Realizar Otra Operacion?");
+            System.out.println("Desea Realizar Otra Operacion?s/n");
             resp = read.next().charAt(0);
         }
         System.out.println(reg.Alumnos);
@@ -96,9 +106,7 @@ public class Lab2_JonrryEnamorado {
         reg.Datos = new ArrayList();
         System.out.println("CREAR USUARIO");
         System.out.println("Nombre: ");//0
-        String r = read.nextLine();
-        reg.Datos.add(r);
-        reg.Alumnos.add(r);
+        reg.Datos.add(read.nextLine());
         System.out.println("Numero de Cuenta:");//1
         reg.Datos.add(read.nextLine());
         System.out.println("Fecha de Nacimiento");//2
@@ -112,11 +120,82 @@ public class Lab2_JonrryEnamorado {
         System.out.println("ID: ");//6
         reg.Datos.add(read.nextLine());
         System.out.println("User: ");//7
-        reg.Datos.add(read.nextLine());
+        String us = read.nextLine();
+        reg.Alumnos.add(us);
+        reg.Datos.add(us);
         System.out.println("Password:");//8
         reg.Datos.add(read.nextLine());
         reg.Datos.add(0);//NOTAS 9
         reg.DatosJuntos.add(reg.Datos);
         System.out.println("USUARIO CREADO EXCITOSAMENTE");
+    }
+
+    static void Login() {
+        read = new Scanner(System.in);
+        if (reg.Alumnos.size() < 1) {
+            System.out.println("NO HAY USUARIOS CREADOS");
+        } else {
+            System.out.println("Ingrese Usuario: ");
+            String usuario = read.nextLine();
+            System.out.println("Ingrese Password: ");
+            String pass = read.nextLine();
+            while (!val(usuario, pass)) {
+                System.out.println("ERROR USUARIO NO VALIDO");
+                System.out.println("");
+                System.out.println("Ingrese Usuario: ");
+                usuario = read.nextLine();
+                System.out.println("Ingrese Password: ");
+                pass = read.nextLine();
+            }
+            ArrayList dat = new ArrayList();
+            dat = (ArrayList) reg.DatosJuntos.get(pos);
+            for (int i = 0; i < dat.size(); i++) {
+                switch (i) {
+                    case 0:
+                        System.out.println("Nombre: " + dat.get(i));
+                        break;
+                    case 1:
+                        System.out.println("Numero de Cuenta: " + dat.get(i));
+                        break;
+                    case 2:
+                        System.out.println("Fecha de Nacimiento: " + dat.get(i));
+                        break;
+                    case 3:
+                        System.out.println("Edad: " + dat.get(i));
+                        break;
+                    case 4:
+                        System.out.println("Ciudad de Residencia: " + dat.get(i));
+                        break;
+                    case 5:
+                        System.out.println("Nacionalidad: " + dat.get(i));
+                        break;
+                    case 6:
+                        System.out.println("ID: " + dat.get(i));
+                        break;
+                    case 7:
+                        System.out.println("User: " + dat.get(i));
+                        break;
+                    case 8:
+                        System.out.println("Password: " + dat.get(i));
+                        break;
+                    case 9:
+                        System.out.println("Notas: " + dat.get(i));
+                        break;
+                }
+            }
+        }
+    }
+
+    static boolean val(String usuario, String pass) {
+        boolean tmp = false;
+        for (int i = 0; i < reg.DatosJuntos.size(); i++) {
+            ArrayList datos = new ArrayList();
+            datos = (ArrayList) (reg.DatosJuntos.get(i));
+            if (usuario.equals(datos.get(7)) && pass.equals(datos.get(8))) {
+                tmp = true;
+                pos = i;
+            }
+        }
+        return tmp;
     }
 }
