@@ -12,17 +12,30 @@ import java.util.ArrayList;
  * @author wende
  */
 public class Examenes {
+
     private String materia;
     private String preguntas;
     private String respuesta;
+
     
-    public Examenes(){
-        
-    }
-    public Examenes(String mat, String pre, String resp){
+
+    public ArrayList Examenes(String ver, int x) {
         ArrayList lista = new ArrayList();
-        lista.add(mat);
-        lista.add(pre);
-        lista.add(resp);
+        if(x ==0){
+        lista.add(ver);
+            
+        }
+        else{
+        lista.add(ver);
+        }
+        return lista;
+    }
+
+    public void printTest(ArrayList x) {
+        
+        for (Object t : x) {
+            System.out.println(x.indexOf(t) + " " + t);
+
+        }
     }
 }
